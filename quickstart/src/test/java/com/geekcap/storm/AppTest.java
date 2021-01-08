@@ -1,4 +1,4 @@
-package com.mycompany.app;
+package com.geekcap.storm;
 
 import static org.junit.Assert.assertTrue;
 
