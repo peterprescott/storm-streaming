@@ -2,7 +2,7 @@
 
 ## COMP529 Assignment 2
 
-We are required to create a Storm topology that reads tweats related to the coronavirus.
+We are required to create a Storm topology that reads tweets related to the coronavirus.
 
 
 ## Similar Projects
