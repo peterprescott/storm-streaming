@@ -1,4 +1,4 @@
-package com.geekcap.storm;
+package piprescott;
 
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;

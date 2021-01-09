@@ -1,4 +1,4 @@
-package com.geekcap.storm;
+package piprescott;
 
 /**
  * Hello world!

@@ -1,4 +1,4 @@
-package com.geekcap.storm;
+package piprescott;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
