@@ -1,5 +1,8 @@
-# Big Data Streaming with Storm (COMP529 Assignment 2)
+# Big Data Streaming with Storm 
 
+## COMP529 Assignment 2
+
+We are required to create a Storm topology that reads tweats related to the coronavirus.
 
 
 ## Similar Projects
@@ -13,3 +16,24 @@
 [David Kiss's Twitter Streaming Topology](https://github.com/davidkiss/storm-twitter-word-count)
 
 [Dockerized Storm Topology](https://medium.com/free-code-camp/apache-storm-is-awesome-this-is-why-you-should-be-using-it-d7c37519a427)
+
+## Run Dockerized Standalone Cluster
+
+```
+git clone https://github.com/pi-prescott/storm-streaming
+docker-compose up
+```
+
+## Generate Maven Project, Inject Storm Code, and Package Jar
+
+```
+./generate
+cd prime
+./copy_code.sh
+cd ../quickstart
+./package_and_run.sh
+```
+
+
+
+
