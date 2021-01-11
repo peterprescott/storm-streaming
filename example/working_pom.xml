@@ -53,7 +53,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>piprescott.ExclamationTopology</mainClass>
+                            <mainClass>piprescott.Topology</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

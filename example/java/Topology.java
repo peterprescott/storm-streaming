@@ -14,7 +14,7 @@ import backtype.storm.tuple.Values;
 import backtype.storm.utils.Utils; 
 import java.util.Map; 
 
-public class ExclamationTopology { 
+public class Topology { 
 	public static class ExclamationBolt extends BaseRichBolt { 
 		OutputCollector _collector; 
 		
