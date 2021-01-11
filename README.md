@@ -21,14 +21,15 @@ We are required to create a Storm topology that reads tweets related to the coro
 
 ```
 git clone https://github.com/pi-prescott/storm-streaming
+cp storm-streaming
 docker-compose up
 ```
 
-## Generate Maven Project, Inject Storm Code, and Package Jar
+## Generate Maven Project, Inject Storm Code, Package Jar, and run in Local Mode
 
 ```
 ./generate
-cd prime
+cd example
 ./copy_code.sh
 cd ../quickstart
 ./package_and_run.sh
