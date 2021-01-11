@@ -40,3 +40,17 @@ services:
     links:
         - nimbus
 
+
+  topology:
+    image: storm
+    container_name: topology
+    command: storm jar /topology.jar piprescott.Topology
+    depends_on:
+      - nimbus
+      - zookeeper
+    links:
+      - nimbus
+      - zookeeper
+    restart: always
+    volumes:
+      - ./topology.jar:/topology.jar
