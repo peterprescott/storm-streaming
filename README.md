@@ -25,6 +25,8 @@ More specifically, the topology should have:
 
 [Twitter Sentiments Real-Time Analyzer](https://github.com/dgreenshtein/storm-twitter-sentiments)
 
+[Another Sentiment Analysis Topology](https://github.com/qiozas/sentiment-analysis-storm)
+
 ## Run Dockerized Standalone Cluster
 
 ```
