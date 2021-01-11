@@ -4,6 +4,12 @@
 
 We are required to create a Storm topology that reads tweets related to the coronavirus.
 
+More specifically, the topology should have:
+- a spout that produces a stream of tweets,
+- a bolt to filter irrelevant words,
+- a bolt to determine negative words, and another to determine positive words,
+- and 'a score bolt to decide if the incoming tweets are negative or positive'.
+
 
 ## Similar Projects
 
@@ -16,6 +22,8 @@ We are required to create a Storm topology that reads tweets related to the coro
 [David Kiss's Twitter Streaming Topology](https://github.com/davidkiss/storm-twitter-word-count)
 
 [Dockerized Storm Topology](https://medium.com/free-code-camp/apache-storm-is-awesome-this-is-why-you-should-be-using-it-d7c37519a427)
+
+[Twitter Sentiments Real-Time Analyzer](https://github.com/dgreenshtein/storm-twitter-sentiments)
 
 ## Run Dockerized Standalone Cluster
 
