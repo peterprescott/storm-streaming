@@ -17,40 +17,53 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-
         <dependency>
             <groupId>org.apache.storm</groupId>
             <artifactId>storm-core</artifactId>
-            <version>0.9.3</version>
+            <version>1.0.1</version>
                <scope>provided</scope>
         </dependency>
 
   </dependencies>
 
-      <build>
+  <build>
+  <plugins>
+   <plugin>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.2</version>
+    <configuration>
+     <source>1.7</source>
+     <target>1.7</target>
+    </configuration>
+   </plugin>
 
-	    <plugins>
-	      <plugin>
-	    <artifactId>maven-assembly-plugin</artifactId>
-	    <configuration>
-	      <descriptorRefs>  
-		<descriptorRef>jar-with-dependencies</descriptorRef>
-	      </descriptorRefs>
-	      <archive>
-		<manifest>
-		  <mainClass>piprescott.Topology</mainClass>
-		</manifest>
-	      </archive>
-	    </configuration>
-	    </plugin>        
-	           </plugins>
-    </build>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-shade-plugin</artifactId>
+    <version>2.4.1</version>
+    <configuration>
+     <createDependencyReducedPom>true</createDependencyReducedPom>
+     <keepDependenciesWithProvidedScope>false</keepDependenciesWithProvidedScope>
+    </configuration>
+    <executions>
+     <execution>
+      <phase>package</phase>
+      <goals>
+       <goal>shade</goal>
+      </goals>
+      <configuration>
+       <transformers>
+        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+         <mainClass>piprescott.Topology</mainClass>
+        </transformer>
+       </transformers>
+      </configuration>
+     </execution>
+    </executions>
+   </plugin>
+  </plugins>
+ </build>
 
     <repositories>
         <repository>
