@@ -1,0 +1,40 @@
+@startuml
+
+skinparam componentStyle uml2
+
+cloud "Docker" {
+
+package "Storm" {
+
+[nimbus]
+[topology]
+[ui]
+
+package Supervisors {
+[supervisor]
+[supervisor2]
+[supervisor3]
+}
+
+}
+
+[zookeeper]
+}
+
+[supervisor] -up-> [nimbus]
+[supervisor2] -up-> [nimbus]
+[supervisor3] -up-> [nimbus]
+[topology] -> [nimbus]
+[ui] -down-> [nimbus]
+
+[nimbus] ..> [zookeeper]
+[supervisor] ..> [zookeeper]
+[supervisor2] ..> [zookeeper]
+[supervisor3] ..> [zookeeper]
+
+
+[ui] -up-> localhost : 8080
+
+@enduml
+
+
