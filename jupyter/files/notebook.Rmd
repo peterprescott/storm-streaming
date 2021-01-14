@@ -1,0 +1,101 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.9.1
+  kernelspec:
+    display_name: Java
+    language: java
+    name: java
+---
+
+```{java}
+String tweetText = "Awful glad vaccine is coming at last! #COVID19"
+```
+
+```{java}
+System.out.println(tweetText);
+```
+
+```{java}
+import java.util.ArrayList;
+
+// convert tweet text to array of words
+String text = tweetText
+                .replaceAll("\\p{Punct}", "")
+                .replaceAll("\\r|\\n", "")
+                .toLowerCase();
+System.out.println(text);
+
+String[] words = text.split(" ");
+
+// We define an array of irrelevant words to be filtered out
+String[] irrelevantWords = {"is", "at", "http", "https", "football"};
+
+// filter words which match irrelevantWords
+
+// first we create an extensible ArrayList to add filtered words to
+ArrayList<String> filteredWords = new ArrayList<String>();
+
+// we assume each word is relevant to begin with...
+boolean relevant;
+
+// ... and then we check by iterating over each word...
+for (String w : words){
+    
+    // ... assuming initially that it is relevant ...
+    relevant = true;
+    
+    // ... and iterating over each irrelevant word ...
+    for (String irrelevant : irrelevantWords){
+        
+        // ... and if a word is the same as an irrelevant word
+        if (w.equals(irrelevant)){ 
+            
+            // ... we know that it is not relevant.
+            relevant = false; 
+            System.out.println(w+"|"+irrelevant+"|"+relevant);
+        }
+    }
+    // If, having compared the word to all the irrelevant words,
+    // it is still found to be relevant, we add it to our ArrayList.
+    if (relevant == true){filteredWords.add(w);}
+}
+// NB: This is not the most efficient method of filtering words,
+// but it is the most simple to understand and implement.
+
+System.out.println(filteredWords);
+
+```
+
+```{java}
+/*
+    count words which match positive/negative words
+*/
+
+// We define a list of positive words
+String[] positiveWords = {"glad", "fantastic", "brilliant"};
+
+// The positive score starts at zero...
+int positiveScore = 0;
+
+// ... but we iterate over our list of filtered words
+for (String w : filteredWords){
+    for (String positive : positiveWords){
+        
+        // ... and increase by one for every positive word in the list.
+        if (w.equals(positive)){
+            positiveScore++;
+        }
+    }
+}
+
+System.out.println(positiveScore);
+```
+
+```{java}
+// write to file
+```
