@@ -27,6 +27,8 @@ public class FilterBolt extends BaseBasicBolt {
 		"why", "con", "time", "would", "is", "at", "football"
 	    }));
 
+	private int tweetId = 0;
+
 	public void execute(Tuple input,BasicOutputCollector collector) {
 
 		// First convert tweet text to array of words
@@ -52,14 +54,18 @@ public class FilterBolt extends BaseBasicBolt {
 		String filteredText = filteredWords.toString();
 
 		// System.out.println(tweetText);
+		// System.out.println(tweetId);
 
-		collector.emit(new Values(tweetText, filteredText));
+		collector.emit(new Values(tweetId, tweetText, filteredText));
+
+		tweetId++;
+
 
 	}
 
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
 
-		declarer.declare(new Fields("tweetText", "filteredText"));
+		declarer.declare(new Fields("tweetId", "tweetText", "filteredText"));
 	}
 
 	public void cleanup() {	}

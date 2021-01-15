@@ -31,24 +31,35 @@ public class NegativeBolt extends BaseBasicBolt {
 		String[] filteredWords = filteredText.substring(1, (length-1))
 						.split(" ");
 
-		int negativeScore = 0;
+		int sentimentScore = 0;
 		ArrayList<String> negativeMatches = new ArrayList<String>();
 		for (String word: filteredWords){
 			if (negativeWords.contains(word)){
-				negativeScore++;
+				sentimentScore++;
 				negativeMatches.add(word);
 			}
 		}
 
+
 		String negativeString = negativeMatches.toString();
 
-		collector.emit(new Values(tweetText, negativeString, negativeScore));
+		int tweetId = input.getIntegerByField("tweetId");
+
+		String scoreType = "negative";
+
+		collector.emit(new Values(tweetId, 
+					tweetText, 
+					scoreType,
+					sentimentScore));
 
 	}
 
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
 
-		declarer.declare(new Fields("negative-tweetText", "negativeWords", "negativeScore"));
+		declarer.declare(new Fields("tweetId", 
+					"tweetText", 
+					"scoreType",
+					"sentimentScore"));
 	}
 
 	public void cleanup() {	}

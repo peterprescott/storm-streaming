@@ -4,6 +4,7 @@ package piprescott;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.topology.TopologyBuilder;
+import backtype.storm.tuple.Fields;
 
 
 public class Topology {
@@ -20,8 +21,8 @@ public class Topology {
 		builder.setBolt("negative-bolt", new NegativeBolt())
 			.shuffleGrouping("filter-bolt");
 		builder.setBolt("score-bolt", new ScoreBolt())
-			.shuffleGrouping("positive-bolt");
-			// .shuffleGrouping("negative-bolt");
+			.fieldsGrouping("positive-bolt", new Fields("tweetId"))
+			.fieldsGrouping("negative-bolt", new Fields("tweetId"));
 		
 		// configure cluster
 		LocalCluster cluster = new LocalCluster();

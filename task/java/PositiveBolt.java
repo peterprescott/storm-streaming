@@ -30,24 +30,34 @@ public class PositiveBolt extends BaseBasicBolt {
 		String[] filteredWords = filteredText.substring(1, (length-1))
 						.split(" ");
 
-		int positiveScore = 0;
+		int sentimentScore = 0;
 		ArrayList<String> positiveMatches = new ArrayList<String>();
 		for (String word: filteredWords){
 			if (positiveWords.contains(word)){
-				positiveScore++;
+				sentimentScore++;
 				positiveMatches.add(word);
 			}
 		}
 
 		String positiveString = positiveMatches.toString();
 
-		collector.emit(new Values(tweetText, positiveString, positiveScore));
+		int tweetId = input.getIntegerByField("tweetId");
+
+		String scoreType = "positive";
+
+		collector.emit(new Values(tweetId, 
+					tweetText, 
+					scoreType,
+					sentimentScore));
 
 	}
 
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
 
-		declarer.declare(new Fields("tweetText", "filteredText", "positiveScore"));
+		declarer.declare(new Fields("tweetId", 
+					"tweetText", 
+					"scoreType",
+					"sentimentScore"));
 	}
 
 	public void cleanup() {	}
