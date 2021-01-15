@@ -1,5 +1,6 @@
-package piprescott;
+// FilterBolt.java
 
+package piprescott;
 
 import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -15,9 +16,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Bolt to filter irrelevant words by matching them with set.
+ *
+ * @author Pi Prescott.
+*/
 
 public class FilterBolt extends BaseBasicBolt {
 
+	// set of irrelevant words
 	private Set<String> irrelevantWords = new HashSet<String>(Arrays.asList(new String[] {
 		"http", "https", "the", "you", "que", "and", "for", "that", 
 		"like", "have", "this", "just", "with", "all", "get", "about", 
@@ -27,11 +34,12 @@ public class FilterBolt extends BaseBasicBolt {
 		"why", "con", "time", "would", "is", "at", "football"
 	    }));
 
+	// simple tracking of tweets as they come
 	private int tweetId = 0;
 
 	public void execute(Tuple input,BasicOutputCollector collector) {
 
-		// First convert tweet text to array of words
+		// Convert tweet text to array of words
 		Status status = (Status) input.getValueByField("tweet");
 		String tweetText = status.getText();
 
@@ -42,7 +50,7 @@ public class FilterBolt extends BaseBasicBolt {
 
 		String[] words = text.split(" ");
 
-		// first we create an extensible ArrayList to add filtered words to
+		// Create an extensible ArrayList for filtered words
 		ArrayList<String> filteredWords = new ArrayList<String>();
 
 		for (String word: words){
@@ -51,16 +59,12 @@ public class FilterBolt extends BaseBasicBolt {
 			}
 		}
 
+		// pass filtered words as string for simplicity
 		String filteredText = filteredWords.toString();
-
-		// System.out.println(tweetText);
-		// System.out.println(tweetId);
-
 		collector.emit(new Values(tweetId, tweetText, filteredText));
 
+		// increment tweetId
 		tweetId++;
-
-
 	}
 
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
@@ -69,5 +73,4 @@ public class FilterBolt extends BaseBasicBolt {
 	}
 
 	public void cleanup() {	}
-
 }

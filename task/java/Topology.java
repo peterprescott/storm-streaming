@@ -1,14 +1,22 @@
-package piprescott;
+// Topology.java
 
+package piprescott;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
+import backtype.storm.StormSubmitter;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.tuple.Fields;
+import backtype.storm.generated.StormTopology;
 
+/**
+ * Main Topology class to set up Storm topology for COMP518 assignment.
+ *
+ * @author PI Prescott
+*/
 
 public class Topology {
- 
+
 	public static void main(String[] args) throws InterruptedException {
 
 		// build topology
@@ -24,12 +32,21 @@ public class Topology {
 			.fieldsGrouping("positive-bolt", new Fields("tweetId"))
 			.fieldsGrouping("negative-bolt", new Fields("tweetId"));
 		
-		// configure cluster
-		LocalCluster cluster = new LocalCluster();
+		// configure...
 		Config conf = new Config();
 		conf.setDebug(true);
-		cluster.submitTopology("tweet-topology", conf, builder.createTopology());
-		Thread.sleep(1000000);
-		cluster.shutdown();
+		StormTopology topology = builder.createTopology();
+
+		// ...comment/uncomment depending on whether running local/distributed...
+			// configure local cluster
+			LocalCluster cluster = new LocalCluster();
+			cluster.submitTopology("local-tweet-topology", conf, topology);
+			Thread.sleep(1000000);
+			cluster.shutdown();
+		
+// 			// configure distributed cluster
+// 			conf.setNumWorkers(3);
+// 			conf.setMaxSpoutPending(5000);
+// 			StormSubmitter.submitTopology("tweet-topology", conf, topology);
 	}
 }
