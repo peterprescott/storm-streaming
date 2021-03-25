@@ -1,50 +1,21 @@
 # Big Data Streaming with Storm 
 
-## COMP529 Assignment 2
+This repo contains the work done for the second assignment done for the
+module COMP529 *Big Data Analysis*, done as part of my [Data Analysis
+MSc](https://github.com/peterprescott/data-analysis-msc).
 
-We are required to create a Storm topology that reads tweets related to the coronavirus.
+We were required to create a Storm topology that reads tweets related to the coronavirus.
 
-More specifically, the topology should have:
+More specifically, the topology was required to have:
 - a spout that produces a stream of tweets,
 - a bolt to filter irrelevant words,
 - a bolt to determine negative words, and another to determine positive words,
 - and 'a score bolt to decide if the incoming tweets are negative or positive'.
 
+Java code can be found in the [`task/java`](task/java) folder. If you want to run this
+yourself, you will need to add your own configuration credentials into
+the `TwitterSpout.java` folder.
 
-## Similar Projects
-
-[Prime Numbers](https://computerscience360.wordpress.com/2016/03/28/creating-a-project-in-apache-storm-crunching-prime-numbers/)
-
-[Storm Wordcount using Python](https://github.com/Azure-Samples/hdinsight-python-storm-wordcount)
-
-[PVillard's Twitter Streaming Topology](https://github.com/pvillard31/storm-twitter)
-
-[David Kiss's Twitter Streaming Topology](https://github.com/davidkiss/storm-twitter-word-count)
-
-[Dockerized Storm Topology](https://medium.com/free-code-camp/apache-storm-is-awesome-this-is-why-you-should-be-using-it-d7c37519a427)
-
-[Twitter Sentiments Real-Time Analyzer](https://github.com/dgreenshtein/storm-twitter-sentiments)
-
-[Another Sentiment Analysis Topology](https://github.com/qiozas/sentiment-analysis-storm)
-
-## Run Dockerized Standalone Cluster
-
-```
-git clone https://github.com/pi-prescott/storm-streaming
-cp storm-streaming
-docker-compose up
-```
-
-## Generate Maven Project, Inject Storm Code, Package Jar, and run in Local Mode
-
-```
-./generate
-cd example
-./copy_code.sh
-cd ../quickstart
-./package_and_run.sh
-```
-
-
-
+If you're interested in the report I submitted, you can read that
+[here](report/PPrescott_COMP529_Assignment2.pdf). 
 
